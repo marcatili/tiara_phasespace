@@ -40,7 +40,7 @@ target_link_libraries(tiara ${Geant4_LIBRARIES} ${AIDA_LIBRARIES} )
 # relies on these scripts being in the current working directory.
 #
 set(tiara_SCRIPTS
-    main.mac  vis.mac 
+    main.mac  vis.mac GenerateMacro.sh main_prototype.mac
   )
 
 foreach(_script ${tiara_SCRIPTS})
