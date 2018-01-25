@@ -1,8 +1,10 @@
 #!/bin/env bash
 
-prototypefile=$1
+# usage: ./GenerateMacro.sh Njobs prototypefile
 
-Njobs=3
+Njobs=$1
+prototypefile=$2
+
 a=56
 b=12
 
