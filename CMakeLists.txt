@@ -51,8 +51,15 @@ foreach(_script ${tiara_SCRIPTS})
     )
 endforeach()
 
+#create macro folder in build directory
+set(macro ${PROJECT_BINARY_DIR}/macro)
+file(MAKE_DIRECTORY ${macro})
+
+
 #----------------------------------------------------------------------------
 # Install the executable to 'bin' directory under CMAKE_INSTALL_PREFIX
 #
 install(TARGETS tiara DESTINATION bin)
+
+
 

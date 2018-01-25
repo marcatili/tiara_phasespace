@@ -122,7 +122,7 @@ void HistoManager::Book()
 //  analysis->CreateNtupleDColumn(1, "tvz"); //track vertex z for triggering particle
 
   analysis->FinishNtuple(1);
-  analysis->SetNtupleActivation(true);         
+ // analysis->SetNtupleActivation(true);         
 
 //generated gamma prompt
 
@@ -147,7 +147,7 @@ void HistoManager::Book()
   analysis->CreateNtupleIColumn(2, "ParentID");          //
 
   analysis->FinishNtuple(2);
-  analysis->SetNtupleActivation(true);             
+ // analysis->SetNtupleActivation(true);             
 
 
 
