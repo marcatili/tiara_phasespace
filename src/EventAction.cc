@@ -103,19 +103,19 @@ void EventAction::EndOfEventAction(const G4Event* evt)
 	G4String VertexVolumeName;
 	G4int IsGammaPrompt;
 
-	/*
-	G4double PGx;
-	G4double PGy;
-	G4double PGz;
-	G4double PGdx;
-	G4double PGdy;
-	G4double PGdz;
-	*/
+	
+	G4double vx;
+	G4double vy;
+	G4double vz;
+	G4double vdx;
+	G4double vdy;
+	G4double vdz;
+	
   	
-	//G4ThreeVector TrackVertexPos;
-	//G4ThreeVector TrackVertexMom;
-        //G4double VertexEkin;
-	//G4double PGtime;
+	G4ThreeVector TrackVertexPos;
+	G4ThreeVector TrackVertexMom;
+        G4double TrackVertexEkin;
+	G4double TrackVertexTime;
 
    	if ( (phspHC->entries())>0 ) {
 
@@ -162,16 +162,16 @@ void EventAction::EndOfEventAction(const G4Event* evt)
 			if (VertexVolumeName=="head_log") VertexVolumeTag=2;
 			if (VertexVolumeName=="skull_log") VertexVolumeTag=3;
 
-			/*
+			
 			//infos at vertex
-			TrackVertexPos =(*phspHC)[i]->GetTrackVertex();
+			TrackVertexPos =(*phspHC)[i]->GetTrackVertexPos();
 			vx=TrackVertexPos.x(); vy=TrackVertexPos.y(); vz=TrackVertexPos.z();
 						
 			TrackVertexMom=	(*phspHC)[i]->GetTrackVertexMomentum();
 			vdx=TrackVertexMom.x(); vdy=TrackVertexMom.y(); vdz=TrackVertexMom.z();
 
-		        VertexEkin= (*phspHC)[i]->GetKinEnergy();
-			*/
+		        TrackVertexEkin= (*phspHC)[i]->GetKinEnergy();
+			TrackVertexTime=(*phspHC)[i]->GetVertexTime();
 
 			TrackID= (*phspHC)[0]->GetTID(); 
 			//The primary is the track with ID 1 ( and with no parent)
@@ -243,6 +243,7 @@ void EventAction::EndOfEventAction(const G4Event* evt)
 								
 				//fill the tree		
 				analysisManager->FillNtupleIColumn(1, 0, EvtNb);
+				
 				analysisManager->FillNtupleDColumn(1, 1, time/ns );
 				analysisManager->FillNtupleDColumn(1, 2, ekin/MeV);
 				analysisManager->FillNtupleDColumn(1, 3, x/cm);
@@ -251,12 +252,24 @@ void EventAction::EndOfEventAction(const G4Event* evt)
 				analysisManager->FillNtupleDColumn(1, 6, dx);//check if there are units!!!!
 				analysisManager->FillNtupleDColumn(1, 7, dy);
 				analysisManager->FillNtupleDColumn(1, 8, dz);
-				analysisManager->FillNtupleIColumn(1, 9, PID);
-				analysisManager->FillNtupleIColumn(1, 10, TrackID);
-				analysisManager->FillNtupleIColumn(1, 11, VertexVolumeTag);
-				analysisManager->FillNtupleIColumn(1, 12, ProcessNameTag);
-				analysisManager->FillNtupleIColumn(1, 13, IsGammaPrompt);
-				analysisManager->FillNtupleIColumn(1, 14, ParentID);
+
+				//vertex variables
+				analysisManager->FillNtupleDColumn(1, 9, TrackVertexTime/ns );
+				analysisManager->FillNtupleDColumn(1, 10, TrackVertexEkin/MeV);
+				analysisManager->FillNtupleDColumn(1, 11, vx/cm);
+				analysisManager->FillNtupleDColumn(1, 12, vy/cm);
+				analysisManager->FillNtupleDColumn(1, 13, vz/cm);
+				analysisManager->FillNtupleDColumn(1, 14, vdx);//check if there are units!!!!
+				analysisManager->FillNtupleDColumn(1, 15, vdy);
+				analysisManager->FillNtupleDColumn(1, 16, vdz);
+
+
+				analysisManager->FillNtupleIColumn(1, 17, PID);
+				analysisManager->FillNtupleIColumn(1, 18, TrackID);
+				analysisManager->FillNtupleIColumn(1, 19, VertexVolumeTag);
+				analysisManager->FillNtupleIColumn(1, 20, ProcessNameTag);
+				analysisManager->FillNtupleIColumn(1, 21, IsGammaPrompt);
+				analysisManager->FillNtupleIColumn(1, 22, ParentID);
 
 
 				//histos

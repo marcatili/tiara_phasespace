@@ -37,10 +37,11 @@ class HodoscopeHit : public G4VHit
       G4String processname;
       G4String vtxvolumename;
       G4int	pixelnumber;
-      //G4ThreeVector trackvertex;
-      //G4ThreeVector trackvertexmom;
+      G4ThreeVector trackvertex;
+      G4ThreeVector trackvertexmom;
       G4ThreeVector partpos;
       G4ThreeVector partdir;
+      G4double      vtime;
 
   public:
       
@@ -83,11 +84,15 @@ class HodoscopeHit : public G4VHit
       inline void SetPartDirection(G4ThreeVector val) {partdir =val; }
       inline G4ThreeVector GetPartDirection(){ return partdir; }
 
-      //inline void SetTrackVertexPos(G4ThreeVector val) {trackvertex =val; }
-      //inline G4ThreeVector GetTrackVertexPos(){ return trackvertex; }
+      inline void SetTrackVertexPos(G4ThreeVector val) {trackvertex =val; }
+      inline G4ThreeVector GetTrackVertexPos(){ return trackvertex; }
 
-      //inline void SetTrackVertexMomentum(G4ThreeVector val) {trackvertexmom =val; }
-      //inline G4ThreeVector GetTrackVertexMomentum(){ return trackvertexmom; }
+      inline void SetTrackVertexMomentum(G4ThreeVector val) {trackvertexmom =val; }
+      inline G4ThreeVector GetTrackVertexMomentum(){ return trackvertexmom; }
+
+      inline void SetVertexTime(G4double val) { vtime = val; }
+      inline G4double GetVertexTime() const { return vtime; }  
+
 
 };
 

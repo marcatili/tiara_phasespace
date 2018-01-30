@@ -45,6 +45,8 @@ G4bool HodoscopeSD::ProcessHits(G4Step* aStep, G4TouchableHistory*)
   //G4cout << "VOLUME NAME "<< PhysVolName <<G4endl;
   
 
+  G4Track *aTrack=aStep->GetTrack();
+
   //G4int copyNo = touchable->GetVolume()->GetCopyNo();
    
  // G4ThreeVector worldPos = preStep->GetPosition();
@@ -68,8 +70,9 @@ G4bool HodoscopeSD::ProcessHits(G4Step* aStep, G4TouchableHistory*)
     	 	newHit->SetProcess(aStep->GetTrack()->GetCreatorProcess()->GetProcessName());
         newHit->SetVertexVolumeName(aStep->GetTrack()->GetLogicalVolumeAtVertex()->GetName());
 
-        //newHit->SetTrackVertexPos(aStep->GetTrack()->GetVertexPosition());
-        //newHit->SetTrackVertexMomentum(aStep->GetTrack()->GetVertexMomentumDirection());
+        newHit->SetTrackVertexPos(aStep->GetTrack()->GetVertexPosition());
+        newHit->SetTrackVertexMomentum(aStep->GetTrack()->GetVertexMomentumDirection());
+	newHit->SetVertexTime(aTrack->GetGlobalTime()); //time since the current event began
 
 	//To select only particles that have just entered in the current volume, 
 	//ie. is at the first step in the volume;   
@@ -81,7 +84,7 @@ G4bool HodoscopeSD::ProcessHits(G4Step* aStep, G4TouchableHistory*)
 	}
 	//to stop tracking every particle (except primary protons) that has entered the phase space
 	//this avoid scoring many times the same particles - and should make the simulation faster
-	G4Track *aTrack=aStep->GetTrack();
+	//G4Track *aTrack=aStep->GetTrack();
 	G4int particleid=aTrack->GetDefinition()->GetPDGEncoding();
   	if (particleid!=2212) aTrack->SetTrackStatus(fStopAndKill); 
 

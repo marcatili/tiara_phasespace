@@ -99,8 +99,9 @@ void HistoManager::Book()
   analysis->CreateNtupleDColumn(1, "dx"); //
   analysis->CreateNtupleDColumn(1, "dy"); //
   analysis->CreateNtupleDColumn(1, "dz"); //
-/*  
+  
 //vertex info 
+  analysis->CreateNtupleDColumn(1, "vTime");          // 
   analysis->CreateNtupleDColumn(1, "vEkin");          // 
   analysis->CreateNtupleDColumn(1, "vx"); //
   analysis->CreateNtupleDColumn(1, "vy"); //
@@ -108,7 +109,7 @@ void HistoManager::Book()
   analysis->CreateNtupleDColumn(1, "vdx"); //
   analysis->CreateNtupleDColumn(1, "vdy"); //
   analysis->CreateNtupleDColumn(1, "vdz"); //
-*/
+
 
   analysis->CreateNtupleIColumn(1, "PID");         // //particle ID
   analysis->CreateNtupleIColumn(1, "TID");         // //track ID
@@ -127,7 +128,7 @@ void HistoManager::Book()
 //generated gamma prompt
 
   
-
+/*
 //  analysis->SetNtupleDirectoryName("pg");  
   analysis->CreateNtuple("pg", "Prompt gamma Tuple"); //at vertex
 
@@ -149,7 +150,7 @@ void HistoManager::Book()
   analysis->FinishNtuple(2);
  // analysis->SetNtupleActivation(true);             
 
-
+*/
 
 }
 

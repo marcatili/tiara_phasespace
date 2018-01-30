@@ -77,7 +77,8 @@ void TrackingAction::PreUserTrackingAction(const G4Track* aTrack)
 		if (evtAct->IsInelastic(procName)) {
 			//these are gamma prompt generated
 			fRunAction->AddGammaPrompt(); //G4cout<<"gamma prompt found"<<G4endl;
-
+			
+			/*
   			const G4Event* evt = G4RunManager::GetRunManager()->GetCurrentEvent();
 			evnb=evt->GetEventID();
 
@@ -86,7 +87,10 @@ void TrackingAction::PreUserTrackingAction(const G4Track* aTrack)
 
 			PGvertex=aTrack->GetVertexPosition();
 			PGvertexDir=aTrack->GetVertexMomentumDirection();
+			*/
    			PGEkinVtx=aTrack->GetVertexKineticEnergy();
+		
+			/*					
 			PGTime	= aTrack->GetGlobalTime(); //time since the current event began	
 			
 			G4double PGx = PGvertex.x(), PGy = PGvertex.y(), PGz = PGvertex.z();
@@ -110,12 +114,13 @@ void TrackingAction::PreUserTrackingAction(const G4Track* aTrack)
 			analysisManager->FillNtupleDColumn(2, 9, PGTime/ns);
 			//analysisManager->FillNtupleDColumn(2, 6, dir);
 			analysisManager->FillNtupleIColumn(2, 10, ParentID);
+			*/
 
 			//histos
 			analysisManager->FillH1(1, PGEkinVtx/MeV);
 
 			//G4cout<<PGEkinVtx/MeV<<G4endl;
-			analysisManager->AddNtupleRow(2); 
+			//analysisManager->AddNtupleRow(2); 
 
 		}
 		//i could store all gamma prompt created in the head with their ekin and vertex pos, but how should i connect them to the trigger?
