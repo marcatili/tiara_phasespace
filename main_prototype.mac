@@ -65,7 +65,7 @@
 # HISTOGRAMS
 ##########################
 
-/analysis/setFileName rootoutput/tiara_phsp_NN.root 
+/analysis/setFileName /sps/hep/grenoble/smarcati/geant4/rootoutput/tiara_phsp_NN.root 
 ##/analysis/h1/set id nbBins  valMin valMax unit
 /analysis/h1/set 1 100 0. 12. MeV  #pg energy
 /analysis/h1/set 2 300 0. 10. ns  #phase space impact time
@@ -104,7 +104,7 @@
 #to visualise scoring
 #/vis/enable
 #/score/drawProjection headbox eDep ! 100 #xy plane
-/score/dumpQuantityToFile headbox eDep rootoutput/edep_profile_NN.txt
+/score/dumpQuantityToFile headbox eDep /sps/hep/grenoble/smarcati/geant4/rootoutput/edep_profile_NN.txt
 
 
 
